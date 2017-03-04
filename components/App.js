@@ -24,6 +24,7 @@ var App = React.createClass({
 
     this.socket = io('http://localhost:3000');
     this.socket.on('connect',this.connect);
+    this.socket.on('disconnect',this.disconnect);
   },
 
   //connect()
@@ -32,7 +33,20 @@ var App = React.createClass({
       status:'connected'
     });
 
-  }
+  },
+
+  disconnect() {
+    this.setState({
+      status:'disconnected'
+    });
+  },
+
+
+
+
+
+
+
 
   render() {
     return (
