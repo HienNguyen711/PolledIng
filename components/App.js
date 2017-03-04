@@ -1,5 +1,6 @@
 var React = require('react');
 var io = require('socket.io-client');
+var Header = require('./common/Header');
 
 var App = React.createClass({
   //willMount
