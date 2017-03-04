@@ -3,6 +3,22 @@ var io = require('socket.io-client');
 var Header = require('./common/Header');
 
 var App = React.createClass({
+  //getInitialState
+  getInitialState() {
+    return {
+      status:'disconnected'
+    }
+
+
+
+
+  },
+
+
+
+
+
+
   //willMount
   componentWillMount() {
 
@@ -12,7 +28,9 @@ var App = React.createClass({
 
   //connect()
   connect() {
-    console.log('Connected from React: '+ this.socket.id);
+    this.setState({
+      status:'connected'
+    });
 
   }
 

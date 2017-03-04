@@ -9,11 +9,21 @@ var Header = React.createClass({
 
   },
 
+  getDefaultProps() {
+    return {
+      status:'Disconnected'
+    }
+  }
+
+
+
+
 
   render() {
     return (
 
-      <header>
+      <header className="row">
+        <div className="col-xs-10">
         <h1>{this.props.title}</h1>
 
 
