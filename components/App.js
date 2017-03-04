@@ -1,6 +1,7 @@
 var React = require('react');
 var io = require('socket.io-client');
 var Header = require('./common/Header');
+var Router = require();
 
 var App = React.createClass({
   //getInitialState
@@ -57,7 +58,12 @@ var App = React.createClass({
 
   render() {
     return (
-      <h1>Hello React </h1>
+      <div>
+        <Header title={this.state.title} status={this.state.status} />
+        <RouteHandler />
+
+
+      </div>
     )
   }
 
