@@ -6,7 +6,8 @@ var App = React.createClass({
   //getInitialState
   getInitialState() {
     return {
-      status:'disconnected'
+      status:'disconnected',
+      title:''
     }
 
 
@@ -25,6 +26,7 @@ var App = React.createClass({
     this.socket = io('http://localhost:3000');
     this.socket.on('connect',this.connect);
     this.socket.on('disconnect',this.disconnect);
+    this.on('Welcome',this.welcome);
   },
 
   //connect()
@@ -41,7 +43,12 @@ var App = React.createClass({
     });
   },
 
-
+  //welcome
+  welcome(serverState) {
+    this.setState({
+      title:serverState.title
+    })
+  },
 
 
 

@@ -1,6 +1,6 @@
 var express = require('express');
 var connections = [];
-
+var title ='Untitle Presentation';//title
 
 
 var port = process.env.PORT || 3000;
@@ -21,7 +21,13 @@ io.sockets.on('connection',function(socket){
 
   });
 
+
+
+
   //connect
+  socket.emit('Welcome',{
+    title:title
+  });
   connections.push(socket);
 
   console.log('Connected: '+ socket.id);
