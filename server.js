@@ -1,6 +1,7 @@
 var express = require('express');
 var connections = [];
 var title ='Untitle Presentation';//title
+var audience =[];
 
 
 var port = process.env.PORT || 3000;
@@ -27,7 +28,10 @@ io.sockets.on('connection',function(socket){
       id:this.id,
       name:payload.name
     };
-    this.emit('join',newMember);
+    this.emit('joined',newMember);
+    audience.push(newMember);
+      //broadcast
+    io.sockets.emit('audience',audience);
     console.log('Audience join '+ payload.name);
 
   })
