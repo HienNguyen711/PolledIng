@@ -30,6 +30,14 @@ var App = React.createClass({
     this.on('Welcome',this.welcome);
   },
 
+  emit(eventName) {
+
+    this.socket()
+  },
+
+
+
+
   //connect()
   connect() {
     this.setState({

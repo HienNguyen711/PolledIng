@@ -1,6 +1,7 @@
 
 var React = require('react');
 var Display = require('./common/Display');
+var Join = require();
 var Audience = React.createClass({
   render() {
     return (
@@ -8,7 +9,7 @@ var Audience = React.createClass({
         <Display if={this.props.status ==='connected'}/>
           <h1>Join the session</h1>
 
-
+          <Join join/>
       </div>
     )
   }

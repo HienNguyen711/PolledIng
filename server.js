@@ -22,7 +22,10 @@ io.sockets.on('connection',function(socket){
   });
 
 
+  socket.on('join',function(payload){
+    console.log('Audience join '+ payload.name);
 
+  })
 
   //connect
   socket.emit('Welcome',{
