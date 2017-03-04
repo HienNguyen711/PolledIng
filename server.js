@@ -1,4 +1,5 @@
 var express = require('express');
+var connections = [];
 
 
 
@@ -9,8 +10,20 @@ app.use(express.static('./node_modules/bootstrap/dist'));
 
 var server = app.listen(port);
 var io = require('socket.io').listen(server);
-
+//socket connections
 io.sockets.on('connection',function(socket){
+  //disconnect
+  socket.once('disconnect',function(){
+    connections.splice(connections.indexOf(socket),1);
+    socket.disconnect();
+    console.log('Disconnected %s socket remaining '+connections.length);
+
+
+  });
+
+  //connect
+  connections.push(socket);
+
   console.log('Connected: '+ socket.id);
 });
 
