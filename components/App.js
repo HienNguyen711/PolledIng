@@ -33,7 +33,9 @@ var App = React.createClass({
     this.on('Welcome',this.updateState);
     this.on('join',this.joined);
     this.socket.on('audience',this.updateAudience);
-    this.socket.on('start',this.updateState);
+    this.socket.on('start',this.start);
+    //end
+
   },
 
   emit(eventName) {
@@ -91,6 +93,9 @@ var App = React.createClass({
 
   },
 
+  start() {
+
+  },
 
 
 
