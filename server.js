@@ -4,6 +4,7 @@ var connections = [];
 var title ='Untitle Presentation';//title
 var audience =[];
 var speaker = {};
+var questions = require();
 
 
 
@@ -82,7 +83,8 @@ io.sockets.on('connection',function(socket){
   socket.emit('Welcome',{
     title:title,
     audience:audience,
-    speaker:speaker.name
+    speaker:speaker.name,
+    questions:questions
   });
   connections.push(socket);
 
