@@ -10,7 +10,8 @@ var App = React.createClass({
       status:'disconnected',
       title:'',
       member:{},
-      audience:[]
+      audience:[],
+      speaker:''
     }
 
 
@@ -29,8 +30,10 @@ var App = React.createClass({
     this.socket = io('http://localhost:3000');
     this.socket.on('connect',this.connect);
     this.socket.on('disconnect',this.disconnect);
-    this.on('Welcome',this.welcome);
+    this.on('Welcome',this.updateState);
     this.on('join',this.joined);
+    this.socket.on('audience',this.updateAudience);
+    this.socket.on('start',this.updateState);
   },
 
   emit(eventName) {
@@ -43,6 +46,11 @@ var App = React.createClass({
 
   //connect()
   connect() {
+    //check from storage
+
+
+
+
     this.setState({
       status:'connected'
     });
@@ -56,19 +64,32 @@ var App = React.createClass({
   },
 
   //welcome
-  welcome(serverState) {
+  updateState(serverState) {
     this.setState({
-      title:serverState.title
+      serverState
     })
   },
 
 
   joined(member) {
+    //save storage
+    sessionStorage.member ;
+
+
     this.setState({
       member:member
     });
   },
 
+
+
+
+
+  updateAudience() {
+    //setState
+
+
+  },
 
 
 

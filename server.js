@@ -1,7 +1,10 @@
 var express = require('express');
+var _ =require('lodash');
 var connections = [];
 var title ='Untitle Presentation';//title
 var audience =[];
+var speaker = {};
+
 
 
 var port = process.env.PORT || 3000;
@@ -15,6 +18,30 @@ var io = require('socket.io').listen(server);
 io.sockets.on('connection',function(socket){
   //disconnect
   socket.once('disconnect',function(){
+
+    var member= _.findWhere(audience,{id:this.id});
+    //if found
+    if(member){
+      //remove member
+      //broadcast
+
+      console.log();
+    }
+    else if(this.id === speaker.id){
+
+      console.log('');
+      speaker ={};
+      title='';
+      io.sockets.emit('end',{title:'',speaker:''});
+
+    }
+
+
+
+
+
+
+
     connections.splice(connections.indexOf(socket),1);
     socket.disconnect();
     console.log('Disconnected %s socket remaining '+connections.length);
@@ -34,11 +61,28 @@ io.sockets.on('connection',function(socket){
     io.sockets.emit('audience',audience);
     console.log('Audience join '+ payload.name);
 
-  })
+  });
+  socket.on('start',function(payload){
+    //payload
+
+    speaker.id= this.is;
+
+    //broadcast
+    io.sockets.emit('start',{
+      title:title,
+      speaker:speaker.name
+    })
+
+  });
+
+
+
 
   //connect
   socket.emit('Welcome',{
-    title:title
+    title:title,
+    audience:audience,
+    speaker:speaker.name
   });
   connections.push(socket);
 
